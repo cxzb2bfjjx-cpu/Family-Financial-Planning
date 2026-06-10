@@ -145,6 +145,15 @@ export function loadDemo(p1 = "Alex", p2 = "Sam") {
     if (i % 2 === 0 || i === MONTHS - 1) { snap(chk1, b1); snap(chk2, b2); }
   });
 
+  s.links = [
+    { id: uid(), name: "Everyday Checking — Chase", url: "chase.com", owner: "p1", category: "banking", notes: "statement posts the 1st", updatedAt: today },
+    { id: uid(), name: "High-Yield Savings — Ally", url: "ally.com", owner: "joint", category: "banking", notes: "", updatedAt: today },
+    { id: uid(), name: "Acme 401(k) — Fidelity", url: "nb.fidelity.com", owner: "p1", category: "investing", notes: "quarterly statements", updatedAt: today },
+    { id: uid(), name: "Roth IRA — Vanguard", url: "vanguard.com", owner: "p2", category: "investing", notes: "", updatedAt: today },
+    { id: uid(), name: "Geico auto & home", url: "geico.com", owner: "joint", category: "insurance", notes: "renews in March", updatedAt: today },
+    { id: uid(), name: "Honda Financial", url: "hondafinancialservices.com", owner: "p2", category: "loans", notes: "", updatedAt: today },
+  ];
+
   s.goals = [
     { id: uid(), name: "Emergency fund", emoji: "🛟", target: 25000, saved: Math.round(balHysa), targetDate: addMonths(today, 10) },
     { id: uid(), name: "Japan trip", emoji: "🗾", target: 6000, saved: 2950, targetDate: addMonths(today, 8) },

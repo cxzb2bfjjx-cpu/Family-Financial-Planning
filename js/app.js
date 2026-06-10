@@ -9,6 +9,7 @@ import { renderActivity, setActivityFilters, txModal } from "./views/activity.js
 import { renderSubs } from "./views/subs.js";
 import { renderMarket } from "./views/marketview.js";
 import { renderFuture } from "./views/future.js";
+import { renderLinks } from "./views/links.js";
 import { renderSettings, onboarding } from "./views/settings.js";
 
 const app = document.getElementById("app");
@@ -19,6 +20,7 @@ const TABS = [
   { id: "subs", label: "Subs", ico: "🔁" },
   { id: "market", label: "Market", ico: "📈" },
   { id: "future", label: "Future", ico: "🔮" },
+  { id: "links", label: "Links", ico: "🔗" },
 ];
 
 let current = "dash/all";
@@ -76,6 +78,7 @@ function render() {
   else if (tab === "subs") renderSubs(view, re);
   else if (tab === "market") renderMarket(view, re);
   else if (tab === "future") renderFuture(view, re);
+  else if (tab === "links") renderLinks(view, re);
   else if (tab === "settings") renderSettings(view, re);
   else renderDashboard(view, "all", re);
 

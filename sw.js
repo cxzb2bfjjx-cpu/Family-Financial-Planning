@@ -1,6 +1,6 @@
 // ---------- Tandem · service worker (offline-first app shell) ----------
 
-const CACHE = "tandem-v1";
+const CACHE = "tandem-v2";
 const SHELL = [
   "./",
   "./index.html",
@@ -21,6 +21,7 @@ const SHELL = [
   "./js/views/subs.js",
   "./js/views/marketview.js",
   "./js/views/future.js",
+  "./js/views/links.js",
   "./js/views/settings.js",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",

@@ -28,6 +28,7 @@ export function defaultState() {
     subsManual: [],     // manual subscription entries {id, name, owner, amount, cadence, nextDate, category}
     subsMuted: [],      // merchantKeys the user said are NOT subscriptions
     goals: [],          // {id, name, target, saved, emoji, targetDate}
+    links: [],          // {id, name, url, owner, category, notes, updatedAt} — financial service shortcuts
     quoteLog: {},       // symbol -> [{d:'YYYY-MM-DD', c:price}] accumulated market history from live fetches
   };
 }
@@ -128,6 +129,13 @@ export function updateGoal(id, patch) {
 }
 export function deleteGoal(id) { state.goals = state.goals.filter((g) => g.id !== id); commit(); }
 
+export function addLink(l) { state.links.push({ id: uid(), notes: "", updatedAt: todayISO(), ...l }); commit(); }
+export function updateLink(id, patch) {
+  const l = state.links.find((l) => l.id === id);
+  if (l) { Object.assign(l, patch, { updatedAt: todayISO() }); commit(); }
+}
+export function deleteLink(id) { state.links = state.links.filter((l) => l.id !== id); commit(); }
+
 export function logQuotes(quotes) {
   // Accumulate our own price history from live fetches — sparklines get richer the more you visit.
   const d = todayISO();
@@ -157,12 +165,12 @@ export function importJSON(text, mode /* 'replace' | 'merge' */) {
   } else {
     // merge: union by id — lets each spouse track on their own phone and merge periodically
     const byId = (arr) => new Map(arr.map((x) => [x.id, x]));
-    for (const k of ["transactions", "accounts", "snapshots", "subsManual", "goals"]) {
+    for (const k of ["transactions", "accounts", "snapshots", "subsManual", "goals", "links"]) {
       const mine = byId(state[k] || []);
       for (const item of incoming[k] || []) {
         const existing = mine.get(item.id);
         if (!existing) state[k].push(item);
-        else if (k === "transactions" && (item.updatedAt || "") > (existing.updatedAt || "")) Object.assign(existing, item);
+        else if ((k === "transactions" || k === "links") && (item.updatedAt || "") > (existing.updatedAt || "")) Object.assign(existing, item);
       }
     }
     state.subsMuted = [...new Set([...(state.subsMuted || []), ...(incoming.subsMuted || [])])];

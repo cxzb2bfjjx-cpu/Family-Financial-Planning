@@ -72,7 +72,7 @@ export function renderSettings(root, navigate) {
         <p class="muted">
           🔒 <b>Private by design</b> — no servers, no accounts, no bank logins, no analytics. Everything stays in your browser's storage.
           📱 <b>Install it</b>: on iPhone, Share → "Add to Home Screen"; on Android, menu → "Install app". It then opens full-screen like a native app, works offline, and keeps your data.
-          📅 The whole system runs on a 10-minute weekly ritual: import or add the week's transactions, and once a month update account balances. The charts do the rest.
+          📅 The whole system runs on a short monthly ritual: open each account from the Links tab, download last month's statement, import it on Activity, and update balances. The charts do the rest.
         </p>
       </div>
     </div>`;
